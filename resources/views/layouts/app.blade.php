@@ -50,6 +50,15 @@
                         <li class="nav-item">
                             <a href="{{route('products.shop')}}" class="nav-link">Shop</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('home')}}" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('about')}}" class="nav-link">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('contact')}}" class="nav-link">Contact</a>
+                        </li>
                         @guest
                         @if (Route::has('register'))
                             <li class="nav-item">
@@ -65,11 +74,11 @@
                         @else
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="avatar-header"><img src="assets/img/logo/avatar.jpg"></div> {{ Auth::user()->name }}
+                                <div class="avatar-header"><img src="{{asset('assets/users_images/'.Auth::user()->image.'')}} "></div> {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="transaction.html">Transactions History</a>
-                                <a class="dropdown-item" href="setting.html">Settings</a>
+                                <a class="dropdown-item" href="{{route('users.orders')}}">Transactions History</a>
+                                <a class="dropdown-item" href="{{route('users.settings')}}">Settings</a>
                                 <div class="dropdown-divider"></div> <!-- Visual separator for different sections -->
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -83,7 +92,7 @@
                         </li>
                             <li class="nav-item">
                             <a href="{{route('products.cart')}}" class="nav-link" data-toggle="" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-shopping-basket"></i> <span class="badge badge-primary">5</span>
+                                <i class="fa fa-shopping-basket"></i>
                             </a>
                           
                         </li>

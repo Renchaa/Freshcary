@@ -21,53 +21,59 @@
                     <div class="col-xs-12 col-sm-7">
                         <h5 class="mb-3">BILLING DETAILS</h5>
                         <!-- Bill Detail of the Page -->
-                        <form action="#" class="bill-detail">
+                        <form action="{{route('products.proccess.checkout')}}"method="POST" class="bill-detail">
                             <fieldset>
+                              @csrf
                                 <div class="form-group row">
                                     <div class="col">
-                                        <input class="form-control" placeholder="Name" type="text">
+                                        <input class="form-control" name="name" placeholder="Name" type="text">
                                     </div>
                                     <div class="col">
-                                        <input class="form-control" placeholder="Last Name" type="text">
+                                        <input class="form-control" name="last_name" placeholder="Last Name" type="text">
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <input class="form-control" placeholder="Company Name" type="text">
+                                </div> -->
+                                <div class="form-group">
+                                    <textarea class="form-control"name="adress" placeholder="Address"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="Address"></textarea>
+                                    <input class="form-control"name="town" placeholder="Town / City" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Town / City" type="text">
+                                    <input class="form-control"name="state" placeholder="State / Country" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="State / Country" type="text">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Postcode / Zip" type="text">
+                                    <input class="form-control" name="zip_code"placeholder="Postcode / Zip" type="text">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col">
-                                        <input class="form-control" placeholder="Email Address" type="email">
+                                        <input class="form-control" name="email"placeholder="Email Address" type="email">
                                     </div>
                                     <div class="col">
-                                        <input class="form-control" placeholder="Phone Number" type="tel">
+                                        <input class="form-control"name="phone_number" placeholder="Phone Number" type="tel">
                                     </div>
                                 </div>
                               
                                 <div class="form-group row">
                                     <div class="col">
-                                        <input class="form-control" placeholder="user_id" type="text">
+                                        <input class="form-control"name="user_id" value="{{Auth::user()->id}}" placeholder="user_id" type="hidden">
                                     </div>
                                     <div class="col">
-                                        <input class="form-control" placeholder="{{Session::get('value')}}" type="tel">
+                                        <input class="form-control" name="price"value="{{$checkoutSubtotal+20}}" type="hidden">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="Order Notes"></textarea>
+                                    <textarea class="form-control"name="order_notes" placeholder="Order Notes"></textarea>
                                 </div>
+
+                               
                             </fieldset>
+                            <div class="form-group">
+                                    <button class=" btn btn-primary"name="submit" type="submit">Submit</button>
+                                </div>
                         </form>
                         <!-- Bill Detail of the Page end -->
                     </div>
@@ -122,13 +128,12 @@
                                     </tfooter>
                                 </table>
                             </div>
-
-                         
                         </div>
-                        <p class="text-right mt-3">
+                        
+                        <!-- <p class="text-right mt-3">
                             <input checked="" type="checkbox"> I’ve read &amp; accept the <a href="#">terms &amp; conditions</a>
                         </p>
-                        <a href="#" class="btn btn-primary float-right">PROCEED TO CHECKOUT <i class="fa fa-check"></i></a>
+                        <a href="#" class="btn btn-primary float-right">PROCEED TO CHECKOUT <i class="fa fa-check"></i></a> -->
                         <div class="clearfix">
                     </div>
                 </div>
