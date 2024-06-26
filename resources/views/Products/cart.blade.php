@@ -74,8 +74,17 @@
                    
                         <div class="clearfix"></div>
                         <h6 class="mt-3">Total: USD {{$subtotal}}</h6>
-                        <a href="checkout.html" class="btn btn-lg btn-primary">Checkout <i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+                        @if($subtotal>0)
+
+                          <form action="{{route('products.prepare.checkout')}}" method="POST">
+                            @csrf
+                            <input name="price" value="{{$subtotal}}" type="hidden">
+                          <button type="submit" class="btn btn-lg btn-primary">Checkout <i class="fa fa-long-arrow-right"></i></button>
+                          </form>
+                          @else
+                          <p class="alert alert-success">you have no products in cart</p>
+                          @endif
+                      </div>
                 </div>
             </div>
         </section>

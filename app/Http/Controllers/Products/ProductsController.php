@@ -9,6 +9,7 @@ use App\Models\Product\Category;
 use App\Models\Product\Cart;
 use Auth;
 use Redirect;
+use Session;
 
 
 class ProductsController extends Controller
@@ -86,4 +87,23 @@ class ProductsController extends Controller
         return Redirect::route("products.cart")->with(['delete' => 'Product deleted from cart successfully ']);
         }
     }
+
+    public function prepareCheckout(Request $request){
+        $price= $request->price;
+        $value=Session::put('value',$price);
+        $newPrice=Session::get($value);
+
+        if($newPrice>0){
+            return Redirect::route("products.checkout");
+         }
+     }
+
+
+     public function checkout(){
+        $cartItems = Cart::select()->where('user_id',Auth::user()->id)->get();
+        $checkoutSubtotal = Cart::select()->where('user_id',Auth::user()->id)
+        ->sum('subtotal');
+
+        return view('products.checkout',compact('cartItems','checkoutSubtotal'));
+     }
 }
