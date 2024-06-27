@@ -57,4 +57,28 @@ Route::post('admin/logout', [App\Http\Controllers\Admins\AdminsController::class
 
 Route::group(['prefix'=>'admin','middleware'=>'auth:admin'],function(){
     Route::get('/index', [App\Http\Controllers\Admins\AdminsController::class, 'index'])->name('admins.dashboard');
+    Route::get('/all-admins', [App\Http\Controllers\Admins\AdminsController::class, 'displayAdmins'])->name('admins.all');
+    Route::get('/create-admins', [App\Http\Controllers\Admins\AdminsController::class, 'createAdmins'])->name('admins.create');
+    Route::post('/create-admins', [App\Http\Controllers\Admins\AdminsController::class, 'storeAdmins'])->name('admins.store');
+
+    //categories
+    Route::get('/all-categories', [App\Http\Controllers\Admins\AdminsController::class, 'displayCategories'])->name('categories.all');
+    Route::get('/create-categories', [App\Http\Controllers\Admins\AdminsController::class, 'createCategories'])->name('categories.create');
+    Route::post('/create-categories', [App\Http\Controllers\Admins\AdminsController::class, 'storeCategories'])->name('categories.store');
+    Route::get('/edit-categories/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'editCategories'])->name('categories.edit');
+    Route::post('/update-categories/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'updateCategories'])->name('categories.update');
+    Route::get('/delete-categories/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'deleteCategories'])->name('categories.delete');
+
+    //products
+    Route::get('/all-products', [App\Http\Controllers\Admins\AdminsController::class, 'displayProducts'])->name('products.all');
+    Route::get('/create-products', [App\Http\Controllers\Admins\AdminsController::class, 'createProducts'])->name('products.create');
+    Route::post('/create-products', [App\Http\Controllers\Admins\AdminsController::class, 'storeProducts'])->name('products.store');
+    Route::get('/delete-products/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'deleteProducts'])->name('products.delete');
+
+    //orders
+    Route::get('/delete-orders', [App\Http\Controllers\Admins\AdminsController::class, 'allOrders'])->name('orders.all');
+    Route::get('/edit-orders/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'editOrders'])->name('orders.edit');
+    Route::post('/update-orders/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'updateOrders'])->name('orders.update');
+
 });
+
